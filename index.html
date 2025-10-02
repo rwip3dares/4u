@@ -2,13 +2,192 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Sorpresa ❤️</title>
-  <!-- Redirección automática -->
-  <meta http-equiv="refresh" content="0; url=ramo.html">
+  <title>Para ti 💐</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe6f2, #fff0f5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2.5em;
+      text-align: center;
+      text-shadow: 2px 2px 5px #fff;
+      z-index: 10;
+      max-width: 800px;
+      line-height: 1.3;
+    }
+
+    .heart {
+      margin-top: 20px;
+      display: inline-block;
+      font-size: 3em;
+      animation: pulse 1s infinite;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Mensaje después de cerrar */
+    #loveMessage {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #d63384;
+      font-weight: bold;
+      display: none;
+      text-shadow: 1px 1px 3px #fff;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flores cayendo */
+    .flower {
+      position: absolute;
+      top: -50px;
+      font-size: 2em;
+      animation: fall linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: pop 0.4s ease;
+    }
+
+    .modal-content h2 {
+      color: #d63384;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      font-size: 1.1em;
+      color: #333;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    .close {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #d63384;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
-  <p>Si no fuiste redirigido automáticamente, haz clic aquí 👉 
-    <a href="ramo.html">Ver mi sorpresa</a>
-  </p>
+  <div>
+    <h1>para ti mi niña preciosa,<br>q te mereces td lo bnito y más<br>aunque sea a la distancia 💐</h1>
+    <div class="heart" id="heart">❤️</div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>💖 Para ti 💖</h2>
+      <p>
+gracias por estar en mi vida, aunque no sé cómo me soportas pq a veces siento que te molesto y peleo por tonteras...  
+pero gracias, porque haces que todo sea más bonito y la paz que siento contigo es increíble.  
+
+tal vez no sea mucho, pero siempre intento hacerte algo lindo y quiero que nunca dudes de lo que siento por ti.  
+
+eres lo mejor que me pasó y lo que más quiero es seguir compartiendo mi vida contigo, a pesar de la distancia.  
+
+un día espero poder decírtelo en persona, mirándote a los ojos, y abrazarte tan fuerte que no quieras soltarme 💕
+      </p>
+      <button class="close" id="closeBtn">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Mensaje que aparece al cerrar -->
+  <div id="loveMessage">te amo mi niña preciosa &lt;333333333</div>
+
+  <script>
+    // Flores cayendo
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.innerHTML = "🌸";
+
+      flower.style.left = Math.random() * 100 + "vw";
+      flower.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 6000);
+    }
+    setInterval(createFlower, 300);
+
+    // Modal
+    const heart = document.getElementById("heart");
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("closeBtn");
+    const loveMessage = document.getElementById("loveMessage");
+
+    heart.addEventListener("click", () => {
+      modal.classList.add("show");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      loveMessage.style.display = "block";
+    });
+  </script>
 </body>
 </html>
